@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Authors>DavidKloster</Authors>
+    <Description>Easy Implementation of an Gerneric Repository</Description>
+    <Copyright>David Kloster 2021</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
