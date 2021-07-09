@@ -6,6 +6,7 @@
     <Description>Easy Implementation of an Gerneric Repository</Description>
     <Copyright>Copyright 2021</Copyright>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/DavidKloster/EntityRepository</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
