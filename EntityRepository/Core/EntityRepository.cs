@@ -1,4 +1,4 @@
-﻿using EntityRepository.QueryableExtentions;
+﻿using logm.EntityRepository.QueryableExtentions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EntityRepository.Core
+namespace logm.EntityRepository.Core
 {
     /// <summary>
     /// Generic Abstract Repository Class for easy and Uncomplicated Dataccess 
