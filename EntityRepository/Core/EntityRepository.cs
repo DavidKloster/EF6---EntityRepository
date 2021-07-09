@@ -13,7 +13,7 @@ namespace EntityRepository.Core
     /// </summary>
     /// <typeparam name="DatabaseContext">Gerneric Typeparameter of the Database context</typeparam>
     /// <typeparam name="T">Generic Objecttype used by DataSet Router</typeparam>
-    public static class EntityRepository<DatabaseContext, T> where DatabaseContext : DbContext, IDisposable where T : class
+    public abstract class EntityRepository<DatabaseContext, T> where DatabaseContext : DbContext, IDisposable where T : class
     {
         private static DatabaseContext CreateDatabaseContextInstance()
         {
