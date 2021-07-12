@@ -1,7 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
@@ -35,6 +38,24 @@ namespace logm.EntityRepository.QueryableExtentions
                 throw new ArgumentException($"The given entity route does not exists. DbSet<{nameof(EntityType)}> not found");
             }
 
+        }
+
+
+        /// <summary>
+        /// IQueryable Extention which enables you to Include multiple Entitys by Expressions at Once
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <typeparam name="TProperty"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="navigationPropertyPath"></param>
+        /// <returns></returns>
+        public static IQueryable<TEntity> IncludeEntities<TEntity, TProperty>([NotNullAttribute] this IQueryable<TEntity> source, params Expression<Func<TEntity, TProperty>>[] navigationPropertyPath) where TEntity : class
+        {
+            foreach (var item in navigationPropertyPath)
+            {
+                source.Include(item);
+            }
+            return source;
         }
 
         /// <summary>
