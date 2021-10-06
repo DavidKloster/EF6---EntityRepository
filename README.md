@@ -1,4 +1,13 @@
-# EntityRepository
-Generic Repository for EntityFrameworkCore which Simplifies creating Repositorys
+# Entity Repository
+Simplification of the repository pattern for entity framework core. 
 
----- Doku WIP ----
+## What is EntityRepository ? 
+
+EntityRepository enables you to use an generic implementation of the repository pattern without the need to create a new repository for each Entity.
+Discription following [...]
+
+## Documentation
+### Installation
+To Install EntityRepository pls use the NuGet Packet found here: https://libraries.io/nuget/logm.
+
+## How To Use
