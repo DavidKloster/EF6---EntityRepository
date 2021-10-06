@@ -9,6 +9,6 @@ Discription following [...]
 
 ## Documentation
 ### Installation
-To Install EntityRepository pls use the NuGet Packet found here: https://libraries.io/nuget/logm.
+To Install EntityRepository pls use the NuGet Packet found here: https://libraries.io/nuget/logm.EntityRepository
 
 ## How To Use
