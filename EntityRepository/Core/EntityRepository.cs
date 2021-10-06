@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,33 +22,33 @@ namespace logm.EntityRepository.Core
         }
 
 
-        public static async Task<List<T>> GetAllAsync(Func<T, bool> condition = null, int? maxResultSize = null, bool trackingEnabled = true)
+        public static async Task<List<T>> GetAllAsync(Func<T, bool> condition = null,int? maxResultSize = null, bool trackingEnabled = true, params Expression<Func<T, object>>[] includepaths)
         {
             return await Task.Run(() =>
             {
                 using (var context = CreateDatabaseContextInstance())
                 {
-                    return context.RouteByEntity<T>().AppendMaxRowCount(maxResultSize).AppendTracking(trackingEnabled).AppendCondition(condition).ToList();
+                    return context.RouteByEntity<T>().IncludeEntities(includepaths).AppendMaxRowCount(maxResultSize).AppendTracking(trackingEnabled).AppendCondition(condition).ToList();
                 }
             });
         }
 
-        public static List<T> GetAll(Func<T, bool> condition = null, int? maxResultSize = null)
+        public static List<T> GetAll(Func<T, bool> condition = null, int? maxResultSize = null, params Expression<Func<T, object>>[] includepaths)
         {
             using (var context = CreateDatabaseContextInstance())
             {
                 if (condition == null)
                 {
-                    return context.RouteByEntity<T>().AppendMaxRowCount(maxResultSize).AsNoTracking().ToList();
+                    return context.RouteByEntity<T>().IncludeEntities(includepaths).AppendMaxRowCount(maxResultSize).AsNoTracking().ToList();
                 }
                 else
                 {
-                    return context.RouteByEntity<T>().AppendMaxRowCount(maxResultSize).AsNoTracking().Where(condition).ToList();
+                    return context.RouteByEntity<T>().IncludeEntities(includepaths).AppendMaxRowCount(maxResultSize).AsNoTracking().Where(condition).ToList();
                 }
             }
         }
 
-        public static async Task<T> GetSingleAsync(Func<T, bool> condition = null)
+        public static async Task<T> GetSingleAsync(Func<T, bool> condition = null, params Expression<Func<T, object>>[] includepaths)
         {
             return await Task.Run(() =>
             {
@@ -56,27 +57,27 @@ namespace logm.EntityRepository.Core
                 {
                     if (condition == null)
                     {
-                        return context.RouteByEntity<T>().FirstOrDefault();
+                        return context.RouteByEntity<T>().IncludeEntities(includepaths).FirstOrDefault();
                     }
                     else
                     {
-                        return context.RouteByEntity<T>().Where(condition).FirstOrDefault();
+                        return context.RouteByEntity<T>().IncludeEntities(includepaths).Where(condition).FirstOrDefault();
                     }
                 }
             });
         }
 
-        public static T GetSingle(Func<T, bool> condition = null)
+        public static T GetSingle(Func<T, bool> condition = null, params Expression<Func<T, object>>[] includepaths)
         {
             using (var context = CreateDatabaseContextInstance())
             {
                 if (condition == null)
                 {
-                    return context.RouteByEntity<T>().FirstOrDefault();
+                    return context.RouteByEntity<T>().IncludeEntities(includepaths).FirstOrDefault();
                 }
                 else
                 {
-                    return context.RouteByEntity<T>().Where(condition).FirstOrDefault();
+                    return context.RouteByEntity<T>().IncludeEntities(includepaths).Where(condition).FirstOrDefault();
                 }
             }
         }
